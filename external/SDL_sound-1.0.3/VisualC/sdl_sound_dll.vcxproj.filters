@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{982f598c-4f05-4fbe-87d8-5768119f312d}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Source Files\decoders">
+      <UniqueIdentifier>{80578cfb-3c5c-4cf7-8045-d9eb0649473f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\decoders\mpglib">
+      <UniqueIdentifier>{cc1fff8d-6d56-4440-b8ea-108cd2ec8e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{d74230fb-11f1-4e3b-9ce8-08fc5b117348}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{211f3d9f-7ba6-43e4-9ec9-f9991c625d7e}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\decoders\mpglib\dct64_i386.c">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mpglib\decode_i386.c">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mpglib\interface.c">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mpglib\layer1.c">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mpglib\layer2.c">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mpglib\layer3.c">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mpglib\mpglib_common.c">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mpglib\tabinit.c">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\aiff.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\au.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\flac.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\midi.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mikmod.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\modplug.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\mpglib.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\ogg.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\raw.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\shn.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\smpeg.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\voc.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\decoders\wav.c">
+      <Filter>Source Files\decoders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\audio_convert.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra_rwops.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDL_sound.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\decoders\mpglib\huffman.h">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\decoders\mpglib\l2tables.h">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\decoders\mpglib\mpg123_sdlsound.h">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\decoders\mpglib\mpglib_sdlsound.h">
+      <Filter>Source Files\decoders\mpglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\acconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra_rwops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SDL_sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SDL_sound_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
