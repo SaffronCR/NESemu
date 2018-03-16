@@ -23,7 +23,7 @@
     <ProjectGuid>{EB0F14D3-9BC3-4B29-88B7-9A2FCD0BDB0A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>NESemuLibTests</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

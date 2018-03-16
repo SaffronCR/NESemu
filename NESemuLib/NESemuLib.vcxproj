@@ -23,7 +23,7 @@
     <ProjectGuid>{AD430D2B-5563-4D47-A58B-36868563EA24}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>NESemuLib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
