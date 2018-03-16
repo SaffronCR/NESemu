@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{AD430D2B-5563-4D47-A58B-36868563EA24}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>NESemuLib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>src</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>src</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>src</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>src</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\APU.h" />
+    <ClInclude Include="src\Assert.h" />
+    <ClInclude Include="src\BitwiseUtils.h" />
+    <ClInclude Include="src\CHRROM.h" />
+    <ClInclude Include="src\CPU.h" />
+    <ClInclude Include="src\Hardware.h" />
+    <ClInclude Include="src\INESParser.h" />
+    <ClInclude Include="src\Input.h" />
+    <ClInclude Include="src\LogUtils.h" />
+    <ClInclude Include="src\mappers\IM000_NROM.h" />
+    <ClInclude Include="src\mappers\IM003_CNROM.h" />
+    <ClInclude Include="src\MemoryHandler.h" />
+    <ClInclude Include="src\MemoryMapper.h" />
+    <ClInclude Include="src\MirroringMode.h" />
+    <ClInclude Include="src\NESemu.h" />
+    <ClInclude Include="src\PPU.h" />
+    <ClInclude Include="src\RAM.h" />
+    <ClInclude Include="src\PRGROM.h" />
+    <ClInclude Include="src\SizeOfArray.h" />
+    <ClInclude Include="src\SRAM.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\APU.cpp" />
+    <ClCompile Include="src\BitwiseUtils.cpp" />
+    <ClCompile Include="src\CHRROM.cpp" />
+    <ClCompile Include="src\CPU.cpp" />
+    <ClCompile Include="src\INESParser.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\LogUtils.cpp" />
+    <ClCompile Include="src\mappers\IM000_NROM.cpp" />
+    <ClCompile Include="src\mappers\IM003_CNROM.cpp" />
+    <ClCompile Include="src\MemoryMapper.cpp" />
+    <ClCompile Include="src\NESemu.cpp" />
+    <ClCompile Include="src\opcodes\ADC.cpp" />
+    <ClCompile Include="src\opcodes\AND.cpp" />
+    <ClCompile Include="src\opcodes\ASL.cpp" />
+    <ClCompile Include="src\opcodes\BIT.cpp" />
+    <ClCompile Include="src\opcodes\BXX.cpp" />
+    <ClCompile Include="src\opcodes\BRK.cpp" />
+    <ClCompile Include="src\opcodes\CLD.cpp" />
+    <ClCompile Include="src\opcodes\CLI.cpp" />
+    <ClCompile Include="src\opcodes\CLV.cpp" />
+    <ClCompile Include="src\opcodes\CMP.cpp" />
+    <ClCompile Include="src\opcodes\DECINC.cpp" />
+    <ClCompile Include="src\opcodes\DEX.cpp" />
+    <ClCompile Include="src\opcodes\DEY.cpp" />
+    <ClCompile Include="src\opcodes\EOR.cpp" />
+    <ClCompile Include="src\opcodes\INX.cpp" />
+    <ClCompile Include="src\opcodes\INY.cpp" />
+    <ClCompile Include="src\opcodes\JMP.cpp" />
+    <ClCompile Include="src\opcodes\JSR.cpp" />
+    <ClCompile Include="src\opcodes\LDA.cpp" />
+    <ClCompile Include="src\opcodes\LDX.cpp" />
+    <ClCompile Include="src\opcodes\LDY.cpp" />
+    <ClCompile Include="src\opcodes\CLC.cpp" />
+    <ClCompile Include="src\opcodes\LSR.cpp" />
+    <ClCompile Include="src\opcodes\NOP.cpp" />
+    <ClCompile Include="src\opcodes\ORA.cpp" />
+    <ClCompile Include="src\opcodes\PHA.cpp" />
+    <ClCompile Include="src\opcodes\PHP.cpp" />
+    <ClCompile Include="src\opcodes\PLA.cpp" />
+    <ClCompile Include="src\opcodes\PLP.cpp" />
+    <ClCompile Include="src\opcodes\ROL.cpp" />
+    <ClCompile Include="src\opcodes\ROR.cpp" />
+    <ClCompile Include="src\opcodes\RTI.cpp" />
+    <ClCompile Include="src\opcodes\RTS.cpp" />
+    <ClCompile Include="src\opcodes\SEC.cpp" />
+    <ClCompile Include="src\opcodes\SED.cpp" />
+    <ClCompile Include="src\opcodes\SEI.cpp" />
+    <ClCompile Include="src\opcodes\SBC.cpp" />
+    <ClCompile Include="src\opcodes\STA.cpp" />
+    <ClCompile Include="src\opcodes\STX.cpp" />
+    <ClCompile Include="src\opcodes\STY.cpp" />
+    <ClCompile Include="src\opcodes\TXX.cpp" />
+    <ClCompile Include="src\PPU.cpp" />
+    <ClCompile Include="src\RAM.cpp" />
+    <ClCompile Include="src\PRGROM.cpp" />
+    <ClCompile Include="src\SRAM.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

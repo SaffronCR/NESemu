@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\APU.cpp" />
+    <ClCompile Include="src\CPU.cpp" />
+    <ClCompile Include="src\INESParser.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\NESemu.cpp" />
+    <ClCompile Include="src\PPU.cpp" />
+    <ClCompile Include="src\RAM.cpp" />
+    <ClCompile Include="src\SRAM.cpp" />
+    <ClCompile Include="src\LogUtils.cpp" />
+    <ClCompile Include="src\opcodes\LDA.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\LDX.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\LDY.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\ADC.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\STA.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\STX.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\STY.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\CLC.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\SEC.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\CLV.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\CLI.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\SEI.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\CLD.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\SED.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\SBC.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\DEX.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\INX.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\DEY.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\INY.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\JMP.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\JSR.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\RTS.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\BRK.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\DECINC.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\RTI.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\BXX.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\TXX.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\CMP.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\ROL.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\AND.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\ASL.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\BIT.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\EOR.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\LSR.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\ORA.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\ROR.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\PHA.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\PLA.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\PHP.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\PLP.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\opcodes\NOP.cpp">
+      <Filter>opcodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CHRROM.cpp" />
+    <ClCompile Include="src\BitwiseUtils.cpp" />
+    <ClCompile Include="src\mappers\IM000_NROM.cpp">
+      <Filter>mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mappers\IM003_CNROM.cpp">
+      <Filter>mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MemoryMapper.cpp" />
+    <ClCompile Include="src\PRGROM.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\APU.h" />
+    <ClInclude Include="src\Assert.h" />
+    <ClInclude Include="src\CPU.h" />
+    <ClInclude Include="src\INESParser.h" />
+    <ClInclude Include="src\Input.h" />
+    <ClInclude Include="src\MemoryHandler.h" />
+    <ClInclude Include="src\NESemu.h" />
+    <ClInclude Include="src\PPU.h" />
+    <ClInclude Include="src\RAM.h" />
+    <ClInclude Include="src\SizeOfArray.h" />
+    <ClInclude Include="src\SRAM.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="src\LogUtils.h" />
+    <ClInclude Include="src\CHRROM.h" />
+    <ClInclude Include="src\MirroringMode.h" />
+    <ClInclude Include="src\BitwiseUtils.h" />
+    <ClInclude Include="src\MemoryMapper.h" />
+    <ClInclude Include="src\mappers\IM000_NROM.h">
+      <Filter>mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hardware.h" />
+    <ClInclude Include="src\mappers\IM003_CNROM.h">
+      <Filter>mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PRGROM.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6560f542-dca7-4f87-b121-7ea539c5deda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="opcodes">
+      <UniqueIdentifier>{f1cceb9e-82fc-455b-90fa-c3adb410ec77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mappers">
+      <UniqueIdentifier>{65d5cfba-5121-44ea-bdee-674462aecee4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
