@@ -93,9 +93,12 @@ int main(int argc, char* args[])
 			//emu.Load("galaga.nes");
 			//emu.Load("mariobros.nes");
 			//emu.Load("popeye.nes");
-			emu.Load("smb.nes");
+			//emu.Load("smb.nes");
 			//emu.Load("volumes.nes");
 			//emu.Load("square_pitch.nes");
+			//emu.Load("zelda.nes");
+			//emu.Load("metroid.nes");
+			emu.Load("contra.nes");
 
 			emu.GetPPU()->SetWaitToShowFrameBuffer(true);
 
@@ -162,12 +165,12 @@ int main(int argc, char* args[])
 				emu.Update(deltaTime);
 
 				// AUDIO. TODO example of sound buffering.
-				static int16_t buf[buf_size / 2];
+				static uint16_t buf[buf_size / 2];
 
-				long count = emu.GetAPU()->ReadSamples((uint16_t*)buf, buf_size / 2);
+				long count = emu.GetAPU()->ReadSamples(buf, buf_size / 2);
 				if (count > 0)
 				{
-					sound->write(buf, count);
+					sound->write((int16_t*)buf, count);
 				}
 
 				// VIDEO.
