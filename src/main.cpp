@@ -158,6 +158,15 @@ int main(int argc, char* args[])
 				// UDPATE EMU.
 				emu.Update(deltaTime);
 
+				// AUDIO. TODO example of sound buffering.
+				static int16_t buf[buf_size / 2];
+
+				long count = emu.GetAPU()->ReadSamples((uint16_t*)buf, buf_size / 2);
+				if (count > 0)
+				{
+					sound->write(buf, count);
+				}
+
 				// VIDEO.
 				if (emu.GetPPU()->IsWaitingToShowFrameBuffer())
 				{
@@ -165,15 +174,6 @@ int main(int argc, char* args[])
 					SDL_RenderClear(renderer);
 					SDL_RenderCopy(renderer, texture, NULL, NULL);
 					SDL_RenderPresent(renderer);
-
-					// AUDIO. CRIS TODO example of sound buffering.
-					static int16_t buf[buf_size / 2];
-
-					long count = emu.GetAPU()->ReadSamples((uint16_t*)buf, buf_size / 2);
-					if (count > 0)
-					{
-						sound->write(buf, count);
-					}
 				}
 			}
 		}
