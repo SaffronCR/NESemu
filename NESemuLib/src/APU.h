@@ -77,10 +77,10 @@ private:
 		uint8_t sweepSilence = 1;
 		uint8_t sweepReload = 1;
 
-		void CalcSweep(void)
+		void CalcSweep(uint16_t offset = 0)
 		{
 			if (sweepNegate)
-				sweepTarget = timerPeriod - ((timerPeriod >> sweepShift) - 1);
+				sweepTarget = timerPeriod - ((timerPeriod >> sweepShift) + offset);
 			else
 				sweepTarget = timerPeriod + (timerPeriod >> sweepShift);
 
@@ -107,10 +107,12 @@ private:
 	uint16_t _averageBuf[(nes_sample_Rate / sample_rate)];
 	long _averageSum = 0;
 
+	uint16_t _pulse1Offset = 1;
+
 	void HalfFrame();
 	void QuarterFrame();
 
 	void UpdateEnvelope(Envelope* envelope);
 	void UpdateCounter(PulseChannel* pulse);
-	void UpdateSweep(PulseChannel* pulse);
+	void UpdateSweep(PulseChannel* pulse, uint16_t offset = 0);
 };

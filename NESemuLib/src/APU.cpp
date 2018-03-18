@@ -51,11 +51,11 @@ void APU::WriteMem(uint16_t address, uint8_t value)
 		break;
 	case 0x4002:
 		_pulse1.timerPeriod = (_pulse1.timerPeriod & 0x0700) | value;
-		_pulse1.CalcSweep();
+		_pulse1.CalcSweep(_pulse1Offset);
 		break;
 	case 0x4003:
 		_pulse1.timerPeriod = (_pulse1.timerPeriod & 0x00FF) | ((value & 0x07) << 8);
-		_pulse1.CalcSweep();
+		_pulse1.CalcSweep(_pulse1Offset);
 		if (_pulse1.enabled)
 		{
 			_pulse1.counter = lengthLookup[value >> 3];
@@ -122,7 +122,7 @@ void APU::WriteMem(uint16_t address, uint8_t value)
 		// Status.
 	case 0x4015:
 		_pulse1.enabled = value & 1;
-		_pulse2.enabled = value & 2;
+		_pulse2.enabled = (value >> 1) & 1;
 		break;
 
 		// Frame counter.
@@ -197,7 +197,7 @@ void APU::UpdateCounter(PulseChannel* pulse)
 	}
 }
 
-void APU::UpdateSweep(PulseChannel* pulse)
+void APU::UpdateSweep(PulseChannel* pulse, uint16_t offset)
 {
 	if (pulse->sweepDivider)
 	{
@@ -215,7 +215,7 @@ void APU::UpdateSweep(PulseChannel* pulse)
 			pulse->sweepDivider = pulse->sweepPeriod + 1;
 
 			pulse->timerPeriod = pulse->sweepTarget;
-			pulse->CalcSweep();
+			pulse->CalcSweep(offset);
 		}
 	}
 }
@@ -236,7 +236,7 @@ void APU::HalfFrame()
 	UpdateCounter(&_pulse2);
 
 	// Update sweep.
-	UpdateSweep(&_pulse1);
+	UpdateSweep(&_pulse1, _pulse1Offset);
 
 	UpdateSweep(&_pulse2);
 }
