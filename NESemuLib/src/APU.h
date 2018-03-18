@@ -23,7 +23,7 @@ public:
 
 private:
 
-	const uint8_t lengthLut[32] =
+	const uint8_t lengthLookup[32] =
 	{
 		10,254, 20,  2, 40,  4, 80,  6, 160,  8, 60, 10, 14, 12, 26, 14,
 		12, 16, 24, 18, 48, 20, 96, 22, 192, 24, 72, 26, 16, 28, 32, 30
@@ -62,7 +62,7 @@ private:
 	{
 		Envelope envelope;
 		uint16_t timer = 12;
-		uint16_t timer_period = 11;
+		uint16_t timerPeriod = 11;
 		uint8_t counter;
 		uint8_t duty = 2;
 		uint8_t enabled = 1;
@@ -80,11 +80,11 @@ private:
 		void CalcSweep(void)
 		{
 			if (sweepNegate)
-				sweepTarget = timer_period - ((timer_period >> sweepShift) - 1);
+				sweepTarget = timerPeriod - ((timerPeriod >> sweepShift) - 1);
 			else
-				sweepTarget = timer_period + (timer_period >> sweepShift);
+				sweepTarget = timerPeriod + (timerPeriod >> sweepShift);
 
-			if ((timer_period < 8) || (sweepTarget > 0x7FF))
+			if ((timerPeriod < 8) || (sweepTarget > 0x7FF))
 				sweepSilence = 1;
 			else
 				sweepSilence = 0;
@@ -101,10 +101,10 @@ private:
 	int _buffer_index = 0;
 	uint16_t _outBuf[buf_size];
 
-	int _cycleLimit = nes_sample_Rate / sample_rate;
-	int _cycleCounter = 1;
+	int _cycleLimit = (nes_sample_Rate / sample_rate) - 1;
+	int _cycleCounter = 0;
 
-	uint16_t _averageBuf[nes_sample_Rate / sample_rate];
+	uint16_t _averageBuf[(nes_sample_Rate / sample_rate) - 1];
 	long _averageSum = 0;
 
 	void HalfFrame();
@@ -112,4 +112,5 @@ private:
 
 	void UpdateEnvelope(Envelope* envelope);
 	void UpdateCounter(PulseChannel* pulse);
+	void UpdateSweep(PulseChannel* pulse);
 };

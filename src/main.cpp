@@ -84,13 +84,16 @@ int main(int argc, char* args[])
 			SDL_Event e;
 
 			NESemu emu;
-			emu.Load("kong.nes");
+			//emu.Load("digdug.nes");
+			//emu.Load("mappy.nes");
+			//emu.Load("bomberman.nes");
+			//emu.Load("kong.nes");
 			//emu.Load("arkanoid.nes");
 			//emu.Load("color_test.nes");
 			//emu.Load("galaga.nes");
 			//emu.Load("mariobros.nes");
 			//emu.Load("popeye.nes");
-			//emu.Load("smb.nes");
+			emu.Load("smb.nes");
 			//emu.Load("volumes.nes");
 			//emu.Load("square_pitch.nes");
 

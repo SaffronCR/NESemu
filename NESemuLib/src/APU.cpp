@@ -1,7 +1,7 @@
 #include "APU.h"
 
 #include "Assert.h"
-
+#include "LogUtils.h"
 #include "NESemu.h"
 
 APU::APU()
@@ -50,15 +50,15 @@ void APU::WriteMem(uint16_t address, uint8_t value)
 		_pulse1.sweepReload = 1;
 		break;
 	case 0x4002:
-		_pulse1.timer_period = (_pulse1.timer_period & 0x0700) | value;
+		_pulse1.timerPeriod = (_pulse1.timerPeriod & 0x0700) | value;
 		_pulse1.CalcSweep();
 		break;
 	case 0x4003:
-		_pulse1.timer_period = (_pulse1.timer_period & 0x00FF) | ((value & 0x07) << 8);
+		_pulse1.timerPeriod = (_pulse1.timerPeriod & 0x00FF) | ((value & 0x07) << 8);
 		_pulse1.CalcSweep();
 		if (_pulse1.enabled)
 		{
-			_pulse1.counter = lengthLut[value >> 3];
+			_pulse1.counter = lengthLookup[value >> 3];
 		}
 		_pulse1.phase = 0;
 		_pulse1.envelope.start = 1;
@@ -79,15 +79,15 @@ void APU::WriteMem(uint16_t address, uint8_t value)
 		_pulse2.sweepReload = 1;
 		break;
 	case 0x4006:
-		_pulse2.timer_period = (_pulse2.timer_period & 0x0700) | value;
+		_pulse2.timerPeriod = (_pulse2.timerPeriod & 0x0700) | value;
 		_pulse2.CalcSweep();
 		break;
 	case 0x4007:
-		_pulse2.timer_period = (_pulse2.timer_period & 0x00FF) | ((value & 0x07) << 8);
+		_pulse2.timerPeriod = (_pulse2.timerPeriod & 0x00FF) | ((value & 0x07) << 8);
 		_pulse2.CalcSweep();
 		if (_pulse2.enabled)
 		{
-			_pulse2.counter = lengthLut[value >> 3];
+			_pulse2.counter = lengthLookup[value >> 3];
 		}
 		_pulse2.phase = 0;
 		_pulse2.envelope.start = 1;
@@ -197,6 +197,29 @@ void APU::UpdateCounter(PulseChannel* pulse)
 	}
 }
 
+void APU::UpdateSweep(PulseChannel* pulse)
+{
+	if (pulse->sweepDivider)
+	{
+		pulse->sweepDivider;
+		if (pulse->sweepReload)
+		{
+			pulse->sweepReload = 0;
+			pulse->sweepDivider = pulse->sweepPeriod + 1;
+		}
+	}
+	else
+	{
+		if (pulse->sweepEnable && pulse->sweepShift)
+		{
+			pulse->sweepDivider = pulse->sweepPeriod + 1;
+
+			pulse->timerPeriod = pulse->sweepTarget;
+			pulse->CalcSweep();
+		}
+	}
+}
+
 void APU::QuarterFrame()
 {
 	// Envelope.
@@ -207,22 +230,30 @@ void APU::QuarterFrame()
 
 void APU::HalfFrame()
 {
-	// process length counters of pulses, triangle, noise, and DMC.
+	// Process length counters of pulses, triangle, noise, and DMC.
 	UpdateCounter(&_pulse1);
 
 	UpdateCounter(&_pulse2);
+
+	// Update sweep.
+	UpdateSweep(&_pulse1);
+
+	UpdateSweep(&_pulse2);
 }
 
 void APU::Tick()
 {
 	// TODO
 
-	if (_frameCounter.updated)
+	// Clock frame counter (http://wiki.nesdev.com/w/index.php/APU_Frame_Counter).
+	// The sequencer is clocked on every other CPU cycle, so 2 CPU cycles = 1 APU cycle.
+	if (_cycleCounter % 2 == 0 || _frameCounter.updated)
 	{
-		// clock frame counter
 		if (_frameCounter.mode)
 		{
-			if (_frameCounter.updated)
+			// Mode 1: 5-Step Sequence.
+
+			if (_frameCounter.updated || _frameCounter.count == 7456 || _frameCounter.count == 18640)
 			{
 				QuarterFrame();
 				HalfFrame();
@@ -232,12 +263,25 @@ void APU::Tick()
 					_frameCounter.updated = 0;
 				}
 			}
+			else if (_frameCounter.count == 3728 || _frameCounter.count == 11185)
+			{
+				QuarterFrame();
+			}
 
-			_frameCounter.count++;
+			if (_frameCounter.count == 18640)
+			{
+				_frameCounter.count = 0;
+			}
+			else
+			{
+				_frameCounter.count++;
+			}
 		}
 		else
 		{
-			if (_frameCounter.updated)
+			// Mode 0: 4 - Step Sequence.
+
+			if (_frameCounter.updated || _frameCounter.count == 7456 || _frameCounter.count == 14914)
 			{
 				QuarterFrame();
 				HalfFrame();
@@ -247,12 +291,23 @@ void APU::Tick()
 					_frameCounter.updated = 0;
 				}
 			}
+			else if (_frameCounter.count == 3728 || _frameCounter.count == 11185)
+			{
+				QuarterFrame();
+			}
 
-			_frameCounter.count++;
+			if (_frameCounter.count == 14914)
+			{
+				_frameCounter.count = 0;
+			}
+			else
+			{
+				_frameCounter.count++;
+			}
 		}
 	}
 
-	// process timers for all waves.
+	// Process timers for all waves.
 	if (_cycleCounter % 2 == 0)
 	{
 		if (_pulse1.timer)
@@ -261,7 +316,7 @@ void APU::Tick()
 		}
 		else
 		{
-			_pulse1.timer = _pulse1.timer_period;
+			_pulse1.timer = _pulse1.timerPeriod;
 
 			if (_pulse1.phase)
 			{
@@ -279,7 +334,7 @@ void APU::Tick()
 		}
 		else
 		{
-			_pulse2.timer = _pulse2.timer_period;
+			_pulse2.timer = _pulse2.timerPeriod;
 
 			if (_pulse2.phase)
 			{
@@ -322,7 +377,7 @@ void APU::Tick()
 	// so we need to adjust both frequencies.
 	if (++_cycleCounter % _cycleLimit == 0)
 	{
-		_cycleCounter = 1;
+		_cycleCounter = 0;
 
 		// Prevent buffer overflow.
 		if (++_buffer_index >= buf_size)
