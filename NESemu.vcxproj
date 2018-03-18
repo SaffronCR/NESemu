@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\external\SDL2-2.0.8\include;$(ProjectDir)\external\SDL_sound-1.0.3;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\external\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)\external\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -82,8 +82,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\external\SDL2-2.0.6\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\SDL2-2.0.6\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -165,6 +165,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Sound_Queue.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Sound_Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

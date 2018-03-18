@@ -1,6 +1,7 @@
 #include "LogUtils.h"
 #include "NESemu.h"
 #include "SizeOfArray.h"
+#include "Sound_Queue.h"
 
 #include <SDL.h>
 #include <stdio.h>
@@ -15,6 +16,8 @@ void HandleGameControllerAxisEvent(Input::ControllerState& controllerState, SDL_
 
 int main(int argc, char* args[])
 {
+	bool bRet = true;
+
 	SDL_Window* window = NULL;
 	SDL_Renderer* renderer = NULL;
 	SDL_Texture* texture = NULL;
@@ -25,11 +28,24 @@ int main(int argc, char* args[])
 	}
 	bool invertAB = true; // Used for NES Mini controllers
 
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER) < 0)
 	{
+		bRet = false;
 		Log::Error("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 	}
+
+	Sound_Queue* sound = new Sound_Queue;
+	if (sound != nullptr)
+	{
+		sound->init(sample_rate);
+	}
 	else
+	{
+		bRet = false;
+		Log::Error("Couldn't create Sound Queue\n");
+	}
+
+	if (bRet)
 	{
 		// Download latest DB from https://raw.github.com/gabomdq/SDL_GameControllerDB/master/gamecontrollerdb.txt
 		SDL_GameControllerAddMappingsFromFile("gamecontrollerdb.txt");
@@ -43,9 +59,11 @@ int main(int argc, char* args[])
 			SDL_WINDOW_SHOWN);
 		if (window == NULL)
 		{
+			bRet = false;
 			Log::Error("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
-		else
+
+		if (bRet)
 		{
 			// Initialise game controllers
 			const int gameControllerCount = SDL_NumJoysticks();
@@ -73,7 +91,8 @@ int main(int argc, char* args[])
 			//emu.Load("mariobros.nes");
 			//emu.Load("popeye.nes");
 			//emu.Load("smb.nes");
-			//emu.Load("zelda_title.nes");
+			//emu.Load("volumes.nes");
+			//emu.Load("square_pitch.nes");
 
 			emu.GetPPU()->SetWaitToShowFrameBuffer(true);
 
@@ -89,7 +108,7 @@ int main(int argc, char* args[])
 			{
 				last = now;
 				now = SDL_GetTicks();
-				deltaTime = (float)(now - last) / 1000;
+				deltaTime = (float)(now - last) / 1000.0;
 
 				while (SDL_PollEvent(&e) != 0)
 				{
@@ -132,16 +151,29 @@ int main(int argc, char* args[])
 					}
 				}
 
+				// INPUT.
 				emu.SetControllerState(1, controller1State);
 				emu.SetControllerState(2, controller2State);
+
+				// UDPATE EMU.
 				emu.Update(deltaTime);
 
+				// VIDEO.
 				if (emu.GetPPU()->IsWaitingToShowFrameBuffer())
 				{
 					SDL_UpdateTexture(texture, NULL, emu.GetPPU()->GetFrameBuffer(), PPU::kHorizontalResolution * sizeof(Uint32));
 					SDL_RenderClear(renderer);
 					SDL_RenderCopy(renderer, texture, NULL, NULL);
 					SDL_RenderPresent(renderer);
+
+					// AUDIO. CRIS TODO example of sound buffering.
+					static int16_t buf[buf_size / 2];
+
+					long count = emu.GetAPU()->ReadSamples((uint16_t*)buf, buf_size / 2);
+					if (count > 0)
+					{
+						sound->write(buf, count);
+					}
 				}
 			}
 		}
@@ -155,12 +187,17 @@ int main(int argc, char* args[])
 		}
 	}
 
+	if (sound != nullptr)
+	{
+		delete sound;
+	}
+
 	SDL_DestroyTexture(texture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 
-	return 0;
+	return bRet ? 0 : 1;
 }
 
 Input::ControllerState& SelectControllerState(
