@@ -101,10 +101,10 @@ private:
 	int _buffer_index = 0;
 	uint16_t _outBuf[buf_size];
 
-	int _cycleLimit = (nes_sample_Rate / sample_rate) - 1;
+	int _cycleLimit = (nes_sample_Rate / sample_rate);
 	int _cycleCounter = 0;
 
-	uint16_t _averageBuf[(nes_sample_Rate / sample_rate) - 1];
+	uint16_t _averageBuf[(nes_sample_Rate / sample_rate)];
 	long _averageSum = 0;
 
 	void HalfFrame();

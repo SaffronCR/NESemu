@@ -350,22 +350,14 @@ void APU::Tick()
 	// Determine audio output.
 	uint8_t pulse1Pos = 0;
 
-	if (!_pulse1.counter || _pulse1.sweepSilence)
-	{
-		pulse1Pos = 0;
-	}
-	else
+	if (_pulse1.counter && !_pulse1.sweepSilence)
 	{
 		pulse1Pos = outputWaveform[_pulse1.duty][_pulse1.phase] * _pulse1.envelope.out * (_pulse1.counter > 0);
 	}
 
 	uint8_t pulse2Pos = 0;
 
-	if (!_pulse2.counter || _pulse2.sweepSilence)
-	{
-		pulse2Pos = 0;
-	}
-	else
+	if (_pulse2.counter && !_pulse2.sweepSilence)
 	{
 		pulse2Pos = outputWaveform[_pulse2.duty][_pulse2.phase] * _pulse2.envelope.out * (_pulse2.counter > 0);
 	}
